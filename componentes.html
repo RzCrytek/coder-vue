@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- VUE CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="components/saludo.js"></script>
+    <!-- Componentes -->
+    <script src="components/padre.js"></script>
+    <script src="components/hijo.js"></script>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <!-- Componentizamos para separar en pequeñas partes nuestras secciones de la web -->
+    <title>Componentes</title>
+  </head>
+  <body>
+    <div id="app">
+      <saludo></saludo>
+      <padre></padre>
+      <hijo></hijo>
+    </div>
+
+    <script>
+      // 1 Construimos nuestro componente - Estos siempre van a tener un template porque vamos a querer pintar muchas etiquetas en HTML
+      Vue.component('saludo', {
+        // 3 Las comillas simples solo funcionan en una linea, asi que usamos literal template
+        // 4 Al agregar mas contenido HTML, debemos usar ` y que todo este envuelto en un div / section
+        // 5 html como comentario para que funcione la extension es6 string html
+        // html
+
+        template: `
+            <section id="saludo-home">
+
+            <h1>{{saludo}}</h1>
+            <p>Soy hacker</p>
+            </section>
+            `,
+
+        // 2 Podemos agregarle data, puntualmente para este componente pero en este caso retorna datos.
+        data() {
+          return {
+            saludo: 'Adios mundo',
+          };
+        },
+      });
+
+      // 6 Me llevo el componente a un archivo JS y lo traigo con script en el head.
+
+      const app = new Vue({
+        el: '#app',
+        data: {
+          saludo: 'Hola desde VUE',
+        },
+      });
+    </script>
+  </body>
+</html>
